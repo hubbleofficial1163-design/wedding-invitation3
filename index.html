@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Приглашение на нашу свадьбу</title>
+    <style>
+        /* Общие стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Playfair Display', serif;
+            background-color: #0a0a0a;
+            color: #e8e6e3;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        h1, h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: normal;
+        }
+
+        /* Герой секция с фотографией */
+        .hero {
+            height: 100vh;
+            background: 
+                linear-gradient(rgba(10,10,10,0.7), rgba(10,10,10,0.9)),
+                url('4.jpg') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(212,175,55,0.1), transparent);
+            pointer-events: none;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+            color: #d4af37;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: #b8b8b8;
+            position: relative;
+            z-index: 2;
+        }
+
+        .names {
+            font-size: 2.5rem;
+            letter-spacing: 5px;
+            margin: 20px 0;
+            color: #ffffff;
+            position: relative;
+            z-index: 2;
+        }
+
+        .date {
+            font-size: 1.8rem;
+            margin: 20px 0;
+            color: #d4af37;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Секция "О нас" */
+        .about {
+            background-color: #1a1a1a;
+            border-top: 1px solid #2a2a2a;
+            border-bottom: 1px solid #2a2a2a;
+        }
+
+        .couple-photos {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .photo-item {
+            width: 45%;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .photo-item img {
+            width: 100%;
+            max-width: 300px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 50%;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+            border: 3px solid #d4af37;
+            transition: transform 0.3s ease;
+        }
+
+        .photo-item img:hover {
+            transform: scale(1.05);
+        }
+
+        .photo-item h3 {
+            margin-top: 15px;
+            font-size: 1.5rem;
+            color: #d4af37;
+        }
+
+        /* Секция деталей */
+        .details {
+            text-align: center;
+            background-color: #0a0a0a;
+        }
+
+        .detail-item {
+            margin: 30px 0;
+            padding: 30px;
+            background: #1a1a1a;
+            border-radius: 10px;
+            border: 1px solid #2a2a2a;
+            transition: transform 0.3s ease;
+        }
+
+        .detail-item:hover {
+            transform: translateY(-5px);
+            border-color: #d4af37;
+        }
+
+        .detail-item h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: #d4af37;
+        }
+
+        .detail-item p {
+            color: #b8b8b8;
+            margin: 5px 0;
+        }
+
+        /* Секция RSVP */
+        .rsvp {
+            background-color: #1a1a1a;
+            border-top: 1px solid #2a2a2a;
+        }
+
+        .rsvp-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #d4af37;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            background: #0a0a0a;
+            border: 1px solid #2a2a2a;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 1rem;
+            color: #e8e6e3;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #d4af37;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+            background: #111111;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #666;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(45deg, #d4af37, #b8941f);
+            color: #0a0a0a;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            font-weight: 600;
+            width: 100%;
+        }
+
+        .btn:hover {
+            background: linear-gradient(45deg, #b8941f, #d4af37);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Галерея */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 40px;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            border: 2px solid #2a2a2a;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.03);
+            border-color: #d4af37;
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Футер */
+        footer {
+            background: #0a0a0a;
+            color: #b8b8b8;
+            text-align: center;
+            padding: 30px 0;
+            border-top: 1px solid #2a2a2a;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .names {
+                font-size: 2rem;
+            }
+            
+            .photo-item {
+                width: 100%;
+            }
+            
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+
+        /* Дополнительные стили для темной темы */
+        h2 {
+            color: #d4af37;
+            font-size: 2.5rem;
+        }
+
+        .about p {
+            color: #b8b8b8;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
+
+        .gallery-section {
+            background: #0a0a0a;
+        }
+
+        /* Стили для select options */
+        select option {
+            background: #1a1a1a;
+            color: #e8e6e3;
+        }
+
+        /* Стили для текстовых областей */
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Герой секция -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Мы женимся!</h1>
+            <div class="names">Алексей & Анна</div>
+            <div class="date">15 Октября 2025</div>
+            <p>Приглашаем вас разделить с нами радость этого особенного дня</p>
+        </div>
+    </section>
+
+    <!-- Секция "О нас" -->
+    <section class="about">
+        <div class="container">
+            <h2>Наша история</h2>
+            <p>
+                Мы встретились пять лет назад и с тех пор наша жизнь наполнилась смехом, приключениями и бесконечной любовью. 
+                Теперь мы хотим официально начать нашу семейную жизнь и приглашаем вас стать свидетелями этого прекрасного момента.
+            </p>
+            
+            <div class="couple-photos">
+                <div class="photo-item">
+                    <img src="1.jpg" alt="Жених">
+                    <h3>Алексей</h3>
+                </div>
+                <div class="photo-item">
+                    <img src="2.jpg" alt="Невеста">
+                    <h3>Анна</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция с деталями -->
+    <section class="details">
+        <div class="container">
+            <h2>Детали мероприятия</h2>
+            
+            <div class="detail-item">
+                <h3>Когда</h3>
+                <p>15 Октября 2025 года</p>
+                <p>Сбор гостей в 15:10</p>
+            </div>
+            
+            <div class="detail-item">
+                <h3>Где</h3>
+                <p>Ресторан "Левон"</p>
+                <p>г. Орел, ул. Ленина, 18</p>
+            </div>
+            
+            <div class="detail-item">
+                <h3>Дресс-код</h3>
+                <p>Вечерние наряды в пастельных тонах</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Галерея -->
+    <section class="gallery-section">
+        <div class="container">
+            <h2>Наши моменты</h2>
+            <div class="gallery">
+                <img src="3.jpg" alt="Наш момент 1">
+                <img src="5.jpg" alt="Наш момент 2">
+                <img src="6.jpg" alt="Наш момент 3">
+                <img src="7.jpg" alt="Наш момент 4">
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция RSVP -->
+    <section class="rsvp">
+        <div class="container">
+            <h2>Подтвердите присутствие</h2>
+            <p>Пожалуйста, ответьте до 1 Октября 2025 года</p>
+            
+            <form class="rsvp-form" id="weddingForm">
+                <div class="form-group">
+                    <label for="name">Ваше имя и фамилия *</label>
+                    <input type="text" id="name" name="name" required placeholder="Иван Иванов">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Ваш email *</label>
+                    <input type="email" id="email" name="email" required placeholder="ivan@example.com">
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Ваш телефон</label>
+                    <input type="tel" id="phone" name="phone" placeholder="+7 (999) 123-45-67">
+                </div>
+                
+                <div class="form-group">
+                    <label for="attendance">Присутствие *</label>
+                    <select id="attendance" name="attendance" required>
+                        <option value="" disabled selected>Подтвердите участие</option>
+                        <option value="yes">С радостью приду!</option>
+                        <option value="no">К сожалению, не смогу</option>
+                        <option value="maybe">Пока не уверен(а)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="alcohol">Предпочтения по алкоголю</label>
+                    <select id="alcohol" name="alcohol">
+                        <option value="" selected>Не важно</option>
+                        <option value="red_wine">Красное вино</option>
+                        <option value="white_wine">Белое вино</option>
+                        <option value="champagne">Шампанское</option>
+                        <option value="non_alcoholic">Безалкогольные напитки</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="allergies">Аллергии или особенности питания</label>
+                    <textarea id="allergies" name="allergies" rows="3" placeholder="Например: вегетарианское меню, аллергия на орехи..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Ваши пожелания и поздравления</label>
+                    <textarea id="message" name="message" rows="4" placeholder="Поделитесь вашими пожеланиями..."></textarea>
+                </div>
+                
+                <button type="submit" class="btn">Отправить ответ</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer>
+        <div class="container">
+            <p>С любовью, Алексей и Анна</p>
+            <p>© 2025 Наша свадьба</p>
+        </div>
+    </footer>
+
+    <script>
+        // Обработка формы RSVP
+        document.getElementById('weddingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Собираем данные формы
+            const formData = new FormData(this);
+            const name = formData.get('name');
+            const attendance = formData.get('attendance');
+            
+            // Показываем сообщение
+            let message = 'Спасибо за ваш ответ, ' + name + '! ';
+            
+            if (attendance === 'yes') {
+                message += 'Мы с нетерпением ждем встречи с вами на нашей свадьбе!';
+            } else if (attendance === 'no') {
+                message += 'Очень жаль, что вы не сможете быть с нами в этот особенный день!';
+            } else {
+                message += 'Надеемся увидеть вас на нашей свадьбе!';
+            }
+            
+            alert(message);
+            
+            // Здесь позже можно добавить отправку данных в Telegram бот
+            console.log('Данные формы:', {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                attendance: formData.get('attendance'),
+                alcohol: formData.get('alcohol'),
+                allergies: formData.get('allergies'),
+                message: formData.get('message')
+            });
+            
+            // Очищаем форму
+            this.reset();
+        });
+    </script>
+</body>
+</html>
